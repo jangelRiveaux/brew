@@ -229,7 +229,7 @@ module OS
 
       sig { returns(String) }
       def self.detect_version_from_clang_version
-        version = DevelopmentTools.clang_version
+        version = ::DevelopmentTools.clang_version
 
         return "dunno" if version.null?
 
