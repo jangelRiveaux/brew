@@ -444,9 +444,9 @@ module FormulaCellarChecks
     File.directory?(dir) ? Dir.chdir(dir) { Dir[pattern] } : []
   end
 
-  sig { params(file: T.any(Pathname, String), objdump: String).returns(T::Boolean) }
-  def cpuid_instruction?(file, objdump = "objdump")
-    @instruction_column_index ||= T.let({}, T.nilable(T::Hash[String, T.untyped]))
+  sig { params(file: T.any(Pathname, String), objdump: Pathname).returns(T::Boolean) }
+  def cpuid_instruction?(file, objdump)
+    @instruction_column_index ||= T.let({}, T.nilable(T::Hash[String, Integer]))
     @instruction_column_index[objdump] ||= begin
       objdump_version = Utils.popen_read(objdump, "--version")
 

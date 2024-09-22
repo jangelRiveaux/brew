@@ -12,7 +12,7 @@ module Homebrew
         cmd: T.nilable(String),
         empty_argv: T::Boolean,
         usage_error: T.nilable(String),
-        remaining_args: T.nilable(T::Array[String])
+        remaining_args: T::Array[String])
       ).void
     }
     def self.help(cmd = nil, empty_argv: false, usage_error: nil, remaining_args: [])
@@ -51,7 +51,7 @@ module Homebrew
       params(
         cmd: String,
         path: Pathname,
-        remaining_args: T.nilable(T::Array[String]),
+        remaining_args: T::Array[String],
       ).returns(String)
     }
     def self.command_help(cmd, path, remaining_args:)
@@ -76,7 +76,7 @@ module Homebrew
     sig {
       params(
         path: Pathname,
-        remaining_args: T.nilable(T::Array[String])
+        remaining_args: T::Array[String]
       ).returns(T.nilable(String))
     }
     def self.parser_help(path, remaining_args:)
@@ -91,12 +91,12 @@ module Homebrew
     end
     private_class_method :parser_help
 
-    sig { params(path: Pathname).returns(T::Array[T.nilable(String)]) }
+    sig { params(path: Pathname).returns(T::Array[String]) }
     def self.command_help_lines(path)
       path.read
           .lines
           .grep(/^#:/)
-          .map { |line| line.slice(2..-1)&.delete_prefix("  ") }
+          .filter_map { |line| line.slice(2..-1)&.delete_prefix("  ") }
     end
     private_class_method :command_help_lines
 
