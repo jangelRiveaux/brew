@@ -191,7 +191,7 @@ module FormulaCellarChecks
     EOS
   end
 
-  sig { params(lib: Pathname, deps: T::Array[Formula]).returns(T.nilable(String)) }
+  sig { params(lib: Pathname, deps: Dependencies).returns(T.nilable(String)) }
   def check_python_packages(lib, deps)
     return unless lib.directory?
 
