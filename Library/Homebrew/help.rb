@@ -9,10 +9,10 @@ module Homebrew
   module Help
     sig {
       params(
-        cmd: T.nilable(String),
-        empty_argv: T::Boolean,
-        usage_error: T.nilable(String),
-        remaining_args: T::Array[String])
+        cmd:            T.nilable(String),
+        empty_argv:     T::Boolean,
+        usage_error:    T.nilable(String),
+        remaining_args: T::Array[String],
       ).void
     }
     def self.help(cmd = nil, empty_argv: false, usage_error: nil, remaining_args: [])
@@ -49,8 +49,8 @@ module Homebrew
 
     sig {
       params(
-        cmd: String,
-        path: Pathname,
+        cmd:            String,
+        path:           Pathname,
         remaining_args: T::Array[String],
       ).returns(String)
     }
@@ -75,8 +75,8 @@ module Homebrew
 
     sig {
       params(
-        path: Pathname,
-        remaining_args: T::Array[String]
+        path:           Pathname,
+        remaining_args: T::Array[String],
       ).returns(T.nilable(String))
     }
     def self.parser_help(path, remaining_args:)
