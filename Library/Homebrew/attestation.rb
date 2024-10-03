@@ -247,5 +247,9 @@ module Homebrew
 
       backfill_attestation
     end
+  rescue InvalidAttestationError => e
+    raise if ENV["HOMEBREW_GITHUB_ACTIONS"].blank?
+
+    opoo "Attestation verification failed (please verify that this is not a network error before rebottling): #{e}"
   end
 end
